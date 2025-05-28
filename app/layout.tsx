@@ -19,6 +19,7 @@ export const metadata: Metadata = {
       url: siteConfig.links.github,
     },
   ],
+  metadataBase: new URL(siteConfig.url),
   openGraph: {
     type: "website",
     locale: "ja_JP",
