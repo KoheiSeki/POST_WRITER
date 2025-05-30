@@ -6,6 +6,8 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import Image from "next/image";
 import Mdx from "@/components/mdx-component";
+import { Metadata } from "next";
+import { siteConfig } from "@/config/site";
 
 /**
  *　@description 注目している記事のデータを取得する関数
@@ -15,6 +17,36 @@ import Mdx from "@/components/mdx-component";
 async function getPostFromSlug(slug: string) {
   const post = allPosts.find((post) => post.slugAsParams === slug);
   return post;
+}
+
+/**
+ * @description 指定されたスラッグに基づいて、ページのメタデータを生成する関数
+ * @param params パラメータのslug情報
+ * @returns ページのメタデータ
+ */
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const page = await getPostFromSlug(params.slug);
+
+  if (!page) {
+    return {};
+  }
+
+  return {
+    title: page.title,
+    description: page.description,
+    openGraph: {
+      type: "article",
+      locale: "ja_JP",
+      title: page.title,
+      description: page.description,
+      siteName: siteConfig.name,
+      url: siteConfig.url,
+    },
+  };
 }
 
 export default async function PostPage({
