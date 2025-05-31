@@ -13,7 +13,7 @@ interface MainNavProps {
 export default function MainNav({ items }: MainNavProps) {
   const [showMobileNav, setShowMobileNav] = useState<boolean>(false);
   return (
-    <div className="flex gap-6 items-center md: gap-8">
+    <div className="flex gap-6 items-center md:gap-8">
       <div className="flex items-center gap-2">
         <Link href={"/"} className="hidden md:flex">
           <span className="font-bold hidden pl-4 sm:inline-block">

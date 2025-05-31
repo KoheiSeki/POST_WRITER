@@ -10,6 +10,7 @@ import { useState } from "react";
 
 const UserAuthForm = () => {
   const [isGithubLoading, setIsGithubLoading] = useState(false);
+  const [isGoogleLoading, setIsGoogleLoading] = useState(false);
 
   return (
     <div className="grid gap-6">
@@ -38,21 +39,39 @@ const UserAuthForm = () => {
         </div>
       </div>
 
-      {/* githubでログイン */}
-      <button
-        className={cn(buttonVariants({ variant: "outline" }))}
-        onClick={() => {
-          setIsGithubLoading(true);
-          signIn("github");
-        }}
-      >
-        {isGithubLoading ? (
-          <Icon.spinner className="mr-2 animate-spin" />
-        ) : (
-          <Icon.github className="mr-2" />
-        )}
-        Github
-      </button>
+      <div className="flex flex-col gap-2">
+        {/* githubでログイン */}
+        <button
+          className={cn(buttonVariants({ variant: "outline" }))}
+          onClick={() => {
+            setIsGithubLoading(true);
+            signIn("github");
+          }}
+        >
+          {isGithubLoading ? (
+            <Icon.spinner className="mr-2 animate-spin" />
+          ) : (
+            <Icon.github className="mr-2" />
+          )}
+          Github
+        </button>
+
+        {/* googleでログイン */}
+        <button
+          className={cn(buttonVariants({ variant: "outline" }))}
+          onClick={() => {
+            setIsGoogleLoading(true);
+            signIn("google");
+          }}
+        >
+          {isGoogleLoading ? (
+            <Icon.spinner className="mr-2 animate-spin" />
+          ) : (
+            <Icon.google className="mr-2" />
+          )}
+          Google
+        </button>
+      </div>
     </div>
   );
 };
